@@ -6,18 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .box{
+        height:50px;
+        width:50px;
+        background-color:salmon;
+    }
+    .box-2{
+        height:50px;
+        width:50px;
+        background-color:aquamarine;
+    }
+    .box-3{
+        height:50px;
+        width:50px;
+        background-color:palevioletred;
+    }
+    [v-cloak]{
+        display:none;
+    }
+</style>
 <body>
-    <div id="app">
+    <div v-cloak id="app">
         {{ greeting }}
-    </div>
+        <input v-model="greeting" />
+    
+        <hr>
 
+        <!-- notice that this is still under one 'app' -->
+        <div v-if="isVisible" class="box"></div>
+        <div v-else-if="isVisible2" class="box-2"></div>
+        <div v-else class="box-3"></div>
+
+        <div v-show="isVisible" class="box"></div>
+    </div>
 
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         let app = Vue.createApp({
             data:function(){
                 return{
-                    greeting:"Hello world"
+                    greeting:"Hello world",
+                    isVisible:false,
+                    isVisible2:false
                 }
             }
         })
